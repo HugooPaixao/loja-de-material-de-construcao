@@ -3,8 +3,8 @@
 #include <string.h>
 
 int itensDisponiveis = 7;
-char* arquivo_de_vendas = "vendas.txt";
-float* precos;
+char *arquivo_de_vendas = "vendas.txt";
+float *precos;
 
 // dados 
 struct Item {
@@ -12,9 +12,9 @@ struct Item {
     float preco;
     int quantidade;
 };
+
 // lista dos itens disponiveis
 char* lista_de_itens[7] = {"Areia", "Tijolo", "Telha", "Cimento", "Argamassa", "Pisos", "Rejunte"};
-
 
 void removerCaracteresExtras() {
     int limpar;
@@ -37,8 +37,8 @@ void liberarItens() {
     free(precos);
 }
 
-void registrarVenda(struct Item* item) {
-    FILE* arquivo = fopen(arquivo_de_vendas, "a");
+void registrarVenda(struct Item *item) {
+    FILE *arquivo = fopen(arquivo_de_vendas, "a");
     if (arquivo == NULL) {
         printf("Erro ao abrir o arquivo de vendas.\n");
         return;
@@ -51,7 +51,7 @@ void registrarVenda(struct Item* item) {
 }
 
 void notasVendas() {
-    FILE* arquivo = fopen(arquivo_de_vendas, "r");
+    FILE *arquivo = fopen(arquivo_de_vendas, "r");
     if (arquivo == NULL) {
         printf("Nenhuma venda registrada.\n");
         return;
@@ -80,8 +80,8 @@ void notasVendas() {
 }
 
 void excluirVenda() {
-    FILE* arquivoAtual = fopen(arquivo_de_vendas, "r");
-    FILE* novoArquivo = fopen("temp.txt", "w");
+    FILE *arquivoAtual = fopen(arquivo_de_vendas, "r");
+    FILE *novoArquivo = fopen("arquivoNovo.txt", "w");
     
     if (arquivoAtual == NULL || novoArquivo == NULL) {
         printf("Erro ao manipular arquivos.\n");
@@ -122,7 +122,7 @@ void excluirVenda() {
         printf("Operacao cancelada.\n");
         fclose(arquivoAtual);
         fclose(novoArquivo);
-        remove("temp.txt");
+        remove("arquivoNovo.txt");
         return;
     }
 
@@ -142,13 +142,13 @@ void excluirVenda() {
     fclose(novoArquivo);
 
     remove(arquivo_de_vendas);
-    rename("temp.txt", arquivo_de_vendas);
+    rename("arquivoNovo.txt", arquivo_de_vendas);
     printf("Venda removida!\n");
 }
 
 void editarVenda() {
-    FILE* arquivo = fopen(arquivo_de_vendas, "r");
-    FILE* arquivoNovo = fopen("arquivoNovo.txt", "w");
+    FILE *arquivo = fopen(arquivo_de_vendas, "r");
+    FILE *arquivoNovo = fopen("arquivoNovo.txt", "w");
     
     if (arquivo == NULL || arquivoNovo == NULL) {
         printf("Erro ao manipular arquivos.\n");
@@ -158,6 +158,7 @@ void editarVenda() {
     struct Item item;
     int contador = 0, linhaParaEditar, opcao, novaQtd;
 
+    // conta e mostra as vendas
     while(fscanf(arquivo, "Item: %19[^,], Preco: %f, Quantidade: %d\n", 
                 item.nome, &item.preco, &item.quantidade) == 3) {
         contador++;
@@ -235,7 +236,7 @@ void editarVenda() {
 }
 
 void processarOpcao(int opcao) {
-    struct Item* item = malloc(sizeof(struct Item));
+    struct Item *item = malloc(sizeof(struct Item));
     if (item == NULL) {
         printf("Erro ao alocar memória para o item.\n");
         return;
@@ -333,7 +334,7 @@ void imprimirOpcoes() {
     printf("| 6- Caixa de Pisos (R$ 43,00)      |\n");
     printf("| 7- Pacote de Rejunte (R$ 7,00)    |\n");
     printf("| 8- Vendas acumuladas              |\n");
-    printf("| 9- Editar Item da venda           |\n");
+    printf("| 9- Editar item da venda           |\n");
     printf("| 10- Excluir venda                 |\n");
     printf("+-----------------------------------+\n");
 }
