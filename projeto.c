@@ -2,11 +2,11 @@
 #include <stdlib.h>
 #include <string.h>
 
-// dados 
 int itensDisponiveis = 7;
 char* arquivo_de_vendas = "vendas.txt";
 float* precos;
 
+// dados 
 struct Item {
     char nome[20];
     float preco;
@@ -158,7 +158,6 @@ void editarVenda() {
     struct Item item;
     int contador = 0, linhaParaEditar, opcao, novaQtd;
 
-    // conta e mostra as vendas
     while(fscanf(arquivo, "Item: %19[^,], Preco: %f, Quantidade: %d\n", 
                 item.nome, &item.preco, &item.quantidade) == 3) {
         contador++;
