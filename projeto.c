@@ -351,6 +351,6 @@ int main() {
         processarOpcao(opcao);
     } while(opcao != 0);
 
-    liberarItens(); // Liberar memória alocada
+    liberarItens();
     return 0;
 }
