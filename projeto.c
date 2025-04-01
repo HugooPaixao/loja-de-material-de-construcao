@@ -23,7 +23,7 @@ void removerCaracteresExtras() {
 
 // aloca memoria para o preco dos itens
 void inicializarPrecos() {
-    precos = malloc(itensDisponiveis * sizeof(float));
+    precos = malloc(itensDisponiveis* sizeof(float));
     precos[0] = 400.0;  // Areia
     precos[1] = 1.0;    // Tijolo
     precos[2] = 1.5;    // Telha
@@ -91,7 +91,7 @@ void excluirVenda() {
     struct Item item;
     int linhaAlvo, contador = 0, linhaParaExcluir;
 
-    // conta e mostra as venda
+    // conta e mostra as vendas
     while(fscanf(arquivoAtual, "Item: %19[^,], Preco: %f, Quantidade: %d\n", 
                 item.nome, &item.preco, &item.quantidade) == 3) {
         contador++;
